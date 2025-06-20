@@ -18,7 +18,7 @@ const ContactSection = () => {
     setStatus("Sending...");
 
     try {
-      const res = await axios.post("http://localhost:5000/send", form);
+      const res = await axios.post("https://skportfolio-1b89.onrender.com/send", form);
       setStatus(res.data);
       setForm({ name: "", email: "", message: "" });
     } catch (err) {
