@@ -13,7 +13,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          className="space-y-6"
+          className="space-y-6 px-11"
         >
           <h1 className="text-4xl md:text-6xl font-bold leading-tight text-orange-400 drop-shadow">
             Hey, I’m <span className="text-white">Sarthak Keche</span>
