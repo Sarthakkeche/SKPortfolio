@@ -34,7 +34,7 @@ const HeroSection = () => {
 
           <div className="flex items-center gap-4 mt-4">
             <a
-              href="https://drive.google.com/file/d/1BQZ_0YwgewmFoe6tgApUD87YgEtIwL_V/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1wzEQgx7jlPRjXikdWxoOZHuvgoxCI26Z/view?usp=drive_link"
               download
               className="px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold transition shadow-lg"
             >
