@@ -4,24 +4,51 @@ import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
 
 const app = express();
-app.use(cors());
+
+// Allow both localhost (for development) and Vercel frontend
+const allowedOrigins = [
+  "http://localhost:5174", // Local React dev server
+  "https://sk-portfolio-rho.vercel.app", // Deployed frontend on Vercel
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed for this origin: " + origin));
+      }
+    },
+    methods: ["GET", "POST", "OPTIONS"], // ✅ Allow preflight
+    credentials: true,
+  })
+);
+
+// Parse JSON
 app.use(bodyParser.json());
 
-// Replace with your Gmail App Password
+// Gmail SMTP Transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "kechesarthak412@gmail.com",
-    pass: "yper yzth szwz chno", // ✅ Gmail App Password
+    pass: "yper yzth szwz chno", // ✅ App Password
   },
 });
 
+// Test route for GET
+app.get("/", (req, res) => {
+  res.send("✅ Backend is running!");
+});
+
+// POST route for sending email
 app.post("/send", (req, res) => {
   const { name, email, message } = req.body;
 
   const mailOptions = {
     from: email,
-    to: "kechesarthak412@gmail.com", // Your own receiving email
+    to: "kechesarthak412@gmail.com",
     subject: `Portfolio Contact: ${name}`,
     text: `
       Name: ${name}
@@ -32,11 +59,15 @@ app.post("/send", (req, res) => {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.error("Error sending:", err);
+      console.error("❌ Error sending:", err);
       return res.status(500).send("Failed to send message.");
     }
-    res.status(200).send("Message sent successfully!");
+    res.status(200).send("✅ Message sent successfully!");
   });
 });
 
-app.listen(5000, () => console.log("✅ SMTP Server running on http://localhost:5000"));
+// Dynamic PORT
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () =>
+  console.log(`✅ SMTP Server running on http://localhost:${PORT}`)
+);
