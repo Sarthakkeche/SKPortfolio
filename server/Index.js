@@ -5,10 +5,12 @@ import nodemailer from "nodemailer";
 
 const app = express();
 
-// Allow both localhost (for development) and Vercel frontend
 const allowedOrigins = [
-  "http://localhost:5174", // Local React dev server
-  "https://sk-portfolio-rho.vercel.app", // Deployed frontend on Vercel
+  "http://localhost:5173",       // local Vite default
+  "http://localhost:5174",       // your current Vite port
+  "http://127.0.0.1:5174",       // sometimes browsers resolve to 127
+  "https://skportfolio.vercel.app",  // your deployed frontend (adjust if needed)
+  "https://skportfolio-1.onrender.com" // your deployed backend (if it serves frontend too)
 ];
 
 app.use(
@@ -17,49 +19,49 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("CORS not allowed for this origin: " + origin));
+        callback(
+          new Error("CORS not allowed for this origin: " + origin)
+        );
       }
     },
-    methods: ["GET", "POST", "OPTIONS"], // ✅ Allow preflight
-    credentials: true,
+    credentials: true, // allow cookies & credentials
   })
 );
+
+
+// ✅ Handle preflight OPTIONS requests
+app.options("*", cors());
 
 // Parse JSON
 app.use(bodyParser.json());
 
-// Gmail SMTP Transporter
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "kechesarthak412@gmail.com",
-    pass: "yper yzth szwz chno", // ✅ App Password
-  },
-});
-
-// Test route for GET
+// Test GET route
 app.get("/", (req, res) => {
-  res.send("✅ Backend is running!");
+  res.send("✅ Backend is live!");
 });
 
-// POST route for sending email
+// Send email route
 app.post("/send", (req, res) => {
   const { name, email, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "kechesarthak412@gmail.com",
+      pass: "yper yzth szwz chno", // Gmail App Password
+    },
+  });
 
   const mailOptions = {
     from: email,
     to: "kechesarthak412@gmail.com",
     subject: `Portfolio Contact: ${name}`,
-    text: `
-      Name: ${name}
-      Email: ${email}
-      Message: ${message}
-    `,
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.error("❌ Error sending:", err);
+      console.error("❌ Error sending mail:", err);
       return res.status(500).send("Failed to send message.");
     }
     res.status(200).send("✅ Message sent successfully!");
@@ -68,6 +70,14 @@ app.post("/send", (req, res) => {
 
 // Dynamic PORT
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`✅ SMTP Server running on http://localhost:${PORT}`)
-);
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`❌ Port ${PORT} is in use, trying a new one...`);
+    app.listen(0, () =>
+      console.log(`✅ Server started on a free port automatically`)
+    );
+  }
+});
