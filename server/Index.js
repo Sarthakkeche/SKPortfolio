@@ -6,9 +6,7 @@ import nodemailer from "nodemailer";
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:5173",       // local Vite default
-  "http://localhost:5174",       // your current Vite port
-  "http://127.0.0.1:5174",       // sometimes browsers resolve to 127
+    // sometimes browsers resolve to 127
   "https://skportfolio.vercel.app",  // your deployed frontend (adjust if needed)
   "https://skportfolio-1.onrender.com" // your deployed backend (if it serves frontend too)
 ];
@@ -42,6 +40,7 @@ app.get("/", (req, res) => {
 
 // Send email route
 app.post("/send", (req, res) => {
+  res.send("✅ Backend is live!");
   const { name, email, message } = req.body;
 
   const transporter = nodemailer.createTransport({
