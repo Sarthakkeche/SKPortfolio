@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 // Send email route
 app.post("/send", (req, res) => {
-  res.send("✅ Backend is live!");
+  res.send("✅ EMAIL SEND SUCCSSEFULLY!");
   const { name, email, message } = req.body;
 
   const transporter = nodemailer.createTransport({
