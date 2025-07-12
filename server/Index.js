@@ -6,26 +6,14 @@ import nodemailer from "nodemailer";
 const app = express();
 
 const allowedOrigins = [
-    // sometimes browsers resolve to 127
-  "https://sk-portfolio-rho.vercel.app/",  // your deployed frontend (adjust if needed)
-
+  "http://localhost:5173",
+  "https://sk-portfolio-rho.vercel.app"
 ];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(
-          new Error("CORS not allowed for this origin: " + origin)
-        );
-      }
-    },
-    credentials: true, // allow cookies & credentials
-  })
-);
-
+app.use(cors({
+  origin: "*", // allow any frontend
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 // ✅ Handle preflight OPTIONS requests
 app.options("*", cors());
