@@ -13,7 +13,7 @@ const projects = [
   title: "FarmRev",
   desc: "A robust platform connecting farmers and merchants, enabling crop listings, real-time chat, secure authentication, and role-based dashboards. Farmers can showcase their produce, while merchants can browse, negotiate, and manage crop requirements — streamlining agricultural trade through a digital-first approach.",
   tech: ["MERN Stack", "Socket.io", "JWT", "Tailwind"],
-  link: "https://yourproject2.com",
+  link: "https://farm-rev-git-main-sarthakkeches-projects.vercel.app/",
 }
 ,
   {
@@ -27,7 +27,7 @@ const projects = [
   title: "Paper Publish Site",
   desc: "A research publishing platform that allows authors to upload, convert, and display their papers in a standardized format. It includes formatting automation using DOCX parsing, metadata extraction, and user-friendly dashboards for managing submissions and updates across institutions.",
   tech: ["React", "Express", "MongoDB", "Word Doc Parser"],
-  link: "https://yourproject4.com",
+  link: "https://ijspr-sarthakkeches-projects.vercel.app/",
 }
 ,
 ];
