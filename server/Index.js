@@ -7,7 +7,7 @@ const app = express();
 
 const allowedOrigins = [
     // sometimes browsers resolve to 127
-  "https://skportfolio.vercel.app",  // your deployed frontend (adjust if needed)
+  "https://sk-portfolio-rho.vercel.app/",  // your deployed frontend (adjust if needed)
   "https://skportfolio-1.onrender.com" // your deployed backend (if it serves frontend too)
 ];
 
