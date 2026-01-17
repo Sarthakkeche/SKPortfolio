@@ -2,6 +2,19 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const projects = [
+  {
+  title: "NyayaSahayak",
+  desc: "An AI-assisted legal advisory system designed for the Indian Police to analyze natural-language crime descriptions and recommend relevant Bharatiya Nyaya Sanhita (BNS) sections. It features a Python NLP engine for high accuracy and a responsive interface to streamline FIR drafting.",
+  tech: ["MERN Stack", "Python", "NLP", "FastAPI", "React", "Tailwind"],
+  link: "https://nyaya-sahayak-lilac.vercel.app/", // Add your specific link here
+},
+
+{
+  title: "Mini CRM Application",
+  desc: "A full-stack CRM analytics platform that captures and visualizes sales pipeline data for actionable insights. It utilizes secure RESTful APIs to aggregate performance metrics and features an interactive dashboard for real-time forecasting and decision-making.",
+  tech: ["Node.js", "Express", "React.js", "REST APIs", "Analytics"],
+  link: "https://crm-one-sage.vercel.app/", // Add your specific link here
+},
  {
   title: "QuickFix",
   desc: "A smart QR-based complaint reporting and tracking platform for campus infrastructure. Faculties scan classroom QR codes to report issues (fans, lights, projectors), while admins manage and resolve complaints via a real-time dashboard with status updates and history logging.",
