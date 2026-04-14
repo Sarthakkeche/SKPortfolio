@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
+  title: "TaskFlow",
+  desc: "A full-stack real-time collaboration platform inspired by Trello, enabling teams to manage tasks efficiently with live updates. It features drag-and-drop task management, secure JWT-based authentication, and activity tracking to monitor user actions — delivering a seamless and interactive workflow management experience.",
+  tech: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "JWT", "Tailwind CSS", "Framer Motion", "Drag & Drop"],
+  link: "https://task-collab-platform-ashen.vercel.app/"
+},
+  {
   title: "NyayaSahayak",
   desc: "An AI-assisted legal advisory system designed for the Indian Police to analyze natural-language crime descriptions and recommend relevant Bharatiya Nyaya Sanhita (BNS) sections. It features a Python NLP engine for high accuracy and a responsive interface to streamline FIR drafting.",
   tech: ["MERN Stack", "Python", "NLP", "FastAPI", "React", "Tailwind"],
@@ -14,6 +20,12 @@ const projects = [
   desc: "A full-stack CRM analytics platform that captures and visualizes sales pipeline data for actionable insights. It utilizes secure RESTful APIs to aggregate performance metrics and features an interactive dashboard for real-time forecasting and decision-making.",
   tech: ["Node.js", "Express", "React.js", "REST APIs", "Analytics"],
   link: "https://crm-one-sage.vercel.app/", // Add your specific link here
+},
+{
+  title: "RateSphere",
+  desc: "An advanced role-based store rating platform designed with a robust RBAC architecture, enabling users to rate stores, owners to track performance, and administrators to manage the entire ecosystem. It features secure JWT authentication, complex relational data handling, and dynamic dashboards with real-time search, sorting, and analytics for a seamless user experience.",
+  tech: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MySQL", "JWT", "Bcrypt", "RBAC"],
+  link: "https://github.com/Sarthakkeche/RateSphere"
 },
  {
   title: "QuickFix",
